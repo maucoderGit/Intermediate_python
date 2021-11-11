@@ -8,6 +8,7 @@ def read():
             numbers.append(int(line))
     print(numbers)
 
+
 def write():
     names = ["Catherina", "Eduard", "Byron", "Dadniellys", "Linda", "Félix"]
     with open("./files/names.txt", "a", encoding="utf-8") as f:

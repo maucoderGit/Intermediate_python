@@ -9,7 +9,8 @@ def palindrome(string):
 
 def run():
     try:
-        print(palindrome("Ola Mi bida adib iM alO"))
+        word = input("Ingresa una frase o palabra: ")
+        print(palindrome(word))
     except TypeError:
         print("Not avalible data type, You can only use strings!")
 

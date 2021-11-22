@@ -10,11 +10,20 @@ def get_word() -> str:
     # We rest 1 because last number will be an error
 
 
+def secret_word(word: str) -> str:
+    for index in word:
+        word.replace(index, "_ ")
+
+
+def validator(word: str, secret_word: str):
+    secret_word = map()
+
+
 def run():
     word = get_word()
+    ocult_word = secret_word(word)
 
     try:
-        print(word)
         print("Bienvenido a el juego del ahorcado\n")
         user_letter = input("Escribe una letra: ")
 

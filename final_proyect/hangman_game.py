@@ -1,7 +1,7 @@
 from random import randint
 
 
-def read():
+def get_word() -> str:
     with open("../final_proyect/files/words.txt", "r", encoding="utf-8") as f:
         words = [line.replace("\n", "") for line in f]
         lenght = int(len(words))
@@ -11,12 +11,12 @@ def read():
 
 
 def run():
-    word = read()
-    
+    word = get_word()
+
     try:
         print(word)
         print("Bienvenido a el juego del ahorcado\n")
-        user_letter = str(input("Escribe una letra: "))
+        user_letter = input("Escribe una letra: ")
 
     except ValueError:
         print("Solo puedes ingresar texto.")

@@ -21,7 +21,7 @@ def get_word() -> str:
 
 def secret_word(word: str) -> str:
     for i in word:
-        word = word.replace(i, "_ ")
+        word = word.replace(i, "_")
     return word
 
 
@@ -39,7 +39,7 @@ def validator(word: str, letter: str) -> list:
 
 def replacer(word: str, user_letter: str, secret_word: str) -> str:
     accerts: list = validator(word, user_letter)
-    array_word: list = list(secret_word.replace(" ",""))
+    array_word: list = list(secret_word)
 
     if len(accerts) == 0:
         print("La letra es incorrecta!")

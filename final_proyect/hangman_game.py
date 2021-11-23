@@ -2,10 +2,10 @@ from random import randint
 
 
 def get_word() -> str:
-    with open("../final_proyect/files/words.txt", "r", encoding="utf-8") as f:
+    with open("./final_proyect/files/words.txt", "r", encoding="utf-8") as f:
         words = [line.replace("\n", "") for line in f]
         lenght = int(len(words))
-    return words[randint(0, lenght - 1)]
+    return words[randint(0, lenght)]
 
     # We rest 1 because last number will be an error
 
@@ -23,39 +23,52 @@ def validator(word: str, letter: str) -> list:
     for i in word:
         if i == letter:
             index_array.append(count)
-            print(index_array)
         count += 1
-    
+
     return index_array
 
 
-def replacer(word, user_letter, secret_word) -> str:
-    accerts = validator(word, user_letter)
-    
-    if len(accerts) == 0:
-        return False
-    
-    for i in accerts:
-        secret_word[i] = user_letter
+def replacer(word: str, user_letter: str, secret_word: str) -> str:
+    accerts: list = validator(word, user_letter)
+    array_word: list = list(secret_word.replace(" ",""))
 
+    if len(accerts) == 0:
+        print("La letra es incorrecta!")
+        return secret_word
+
+    for i in accerts:
+        array_word[i] = user_letter
+
+    secret_word = "".join(array_word)
     return secret_word
 
 
+def game(word: str) -> bool:
+    my_word: tuple = tuple(map(lambda i: i == "_", word))
+
+    for i in my_word:
+        if i == True:
+            return False
+    
+    return True
+
+
 def run():
+    print("Bienvenido a el juego del ahorcado\n")
+
     word = get_word()
-    print(word)
     ocult_word = secret_word(word)
-    print(ocult_word)
 
     try:
-        print("Bienvenido a el juego del ahorcado\n")
-        user_letter = input("Escribe una letra: ")
-        ocult_word = replacer(word, user_letter, ocult_word)
-        print(ocult_word)
+        while game(ocult_word) == False:
+            print(ocult_word + "\n")
+            user_letter = input("Escribe una letra: ")
+            ocult_word = replacer(word, user_letter, ocult_word)
+
+        print(ocult_word + " \nGanaste!")
 
     except ValueError:
         print("Solo puedes ingresar texto.")
-        run()
 
 
 if __name__ == "__main__":

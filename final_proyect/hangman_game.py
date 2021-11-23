@@ -1,6 +1,15 @@
 from random import randint
 
 
+def user_input() -> str:
+    letter: str= input("Escribe una letra: ")
+    while len(letter) != 1:
+        print("Debes ingresar una letra")
+        letter: str= input("Escribe una letra: ")
+
+    return letter
+
+
 def get_word() -> str:
     with open("./final_proyect/files/words.txt", "r", encoding="utf-8") as f:
         words = [line.replace("\n", "") for line in f]
@@ -62,12 +71,12 @@ def run():
     try:
         while game(ocult_word) == False:
             print(ocult_word + "\n")
-            user_letter = input("Escribe una letra: ")
+            user_letter = user_input()
             ocult_word = replacer(word, user_letter, ocult_word)
 
         print(ocult_word + " \nGanaste!")
 
-    except ValueError:
+    except TypeError:
         print("Solo puedes ingresar texto.")
 
 

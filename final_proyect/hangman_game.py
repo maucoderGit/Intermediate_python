@@ -1,5 +1,5 @@
 from random import randint
-
+import os
 
 def user_input() -> str:
     letter: str= input("Escribe una letra: ")
@@ -40,6 +40,7 @@ def validator(word: str, letter: str) -> list:
 def replacer(word: str, user_letter: str, secret_word: str) -> str:
     accerts: list = validator(word, user_letter)
     array_word: list = list(secret_word)
+    os.system("clear")
 
     if len(accerts) == 0:
         print("La letra es incorrecta!")

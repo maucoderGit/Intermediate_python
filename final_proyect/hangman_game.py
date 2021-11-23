@@ -12,26 +12,46 @@ def get_word() -> str:
 
 def secret_word(word: str) -> str:
     for i in word:
-        print(i)
         word = word.replace(i, "_ ")
     return word
 
 
-def validator(word: str, letter: str):
-    # secret_word = open
-    print(secret_word)
+def validator(word: str, letter: str) -> list:
+    index_array = []
+    count = 0
+
+    for i in word:
+        if i == letter:
+            index_array.append(count)
+            print(index_array)
+        count += 1
+    
+    return index_array
+
+
+def replacer(word, user_letter, secret_word) -> str:
+    accerts = validator(word, user_letter)
+    
+    if len(accerts) == 0:
+        return False
+    
+    for i in accerts:
+        secret_word[i] = user_letter
+
     return secret_word
 
 
 def run():
     word = get_word()
+    print(word)
     ocult_word = secret_word(word)
     print(ocult_word)
 
     try:
         print("Bienvenido a el juego del ahorcado\n")
         user_letter = input("Escribe una letra: ")
-        ocult_word = validator(word, user_letter)
+        ocult_word = replacer(word, user_letter, ocult_word)
+        print(ocult_word)
 
     except ValueError:
         print("Solo puedes ingresar texto.")
